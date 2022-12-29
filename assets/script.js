@@ -17,10 +17,22 @@ const slides = [
 	}
 ]
 
+// Modifie le DOM en ajoutant une DIV de class "DOT" pour chaque éléments image présent dans le tableau "slides"
+
+
 for (let i = 0; i < slides.length; i++) {
-	return (i);
+	let leDot = document.createElement("div");
+	leDot.classList.add("dot")
+	let lesDots = document.querySelector("#banner > div.dots");
+	lesDots.appendChild(leDot);
 }
 
+
+
+
+// générer (i) dot dans [dots]
+// si l'image affichée correspond à l'image [x] de slides
+// remplacer [dot][i] de [dots] par [dot-selected]
 
 
 document
@@ -40,6 +52,3 @@ document
 		document
 			alert("droite");
 })
-
-document
-	.getElementsByClassName("dots");

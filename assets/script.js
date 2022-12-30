@@ -50,21 +50,29 @@ document
 	.addEventListener("click", function(event){
 		event.preventDefault();    
 		event.stopPropagation();
+		if (count <= 0) {
+			count = 3;
+		} else {
+			-- count;
+		};
+		document
+			.getElementById("bannerImg")
+			.src = "./assets/images/slideshow/" + bannerImgShow;
 
-//		document
-//			alert("gauche");
-})
+		//		console.log(count)
+});
 
 document
 	.getElementById("arrowRight")
 	.addEventListener("click", function(event){
 		event.preventDefault();    
 		event.stopPropagation();
-		if (count > slides.length) {
-			count == 0;
+		if (count >= slides.length-1) {
+			count = 0;
 		} else {
-			count += 1;
-		}
-//		document
-//			alert("droite");
-})
+			++ count;
+		};
+		bannerImg.src = "./assets/images/slideshow/" + bannerImgShow;
+
+		//		console.log(count);
+});

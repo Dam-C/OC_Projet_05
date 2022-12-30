@@ -17,62 +17,59 @@ const slides = [
 	}
 ]
 
-// Modifie le code pour afficher la première image 
-// ajoute la classe "show"
+const contents = slides.length; // Base de comptage pour le nombre de points
+let count = 0; // pour naviguer dans les index de slides
 
-//let bannerShow = document.querySelector("#banner > .banner__slide");
-//bannerShow.classList.add("banner__slide--show");
-
-// Modifie le DOM en ajoutant une DIV de class "DOT" 
-// pour chaque éléments image présent dans le tableau "slides"
-
-for (let i = 0; i < slides.length; i++) {
+//pour créer autant de points qu'il y a d'images et de texte
+for (let i = 0; i < contents; i++) {
 	let leDot = document.createElement("div");
 	leDot.classList.add("dot")
 	let lesDots = document.querySelector("#banner > div.dots");
 	lesDots.appendChild(leDot);
 }
 
+//pour ajouter le point sélectionné
 let myDot = document.querySelector("#banner > div.dots > .dot");
 myDot.classList.add("dot_selected");
+let myDots = document.getElementsByClassName("dot");
 
-// générer (i) dot dans [dots]
-// si l'image affichée correspond à l'image [x] de slides
-// remplacer [dot][i] de [dots] par [dot-selected]
+//let bannerImgShow = slides[count].image; la variable ne peut s'ajouter à la fonction ??
+//let bannerTxtShow = slides[count].tagLine;
 
-let count = 0; // pour naviguer dans les index de slides
-let bannerImgShow = slides[count].image;
-let bannerImg = document.getElementById("bannerImg");
-bannerImg.src = "./assets/images/slideshow/" + bannerImgShow;
+let bannerImg = document.getElementById("bannerImg"); // identifie l'image en bannière
+bannerImg.src = "./assets/images/slideshow/" + slides[count].image; // indique l'image affichée en bannière
 
-document
-	.getElementById("arrowLeft")
-	.addEventListener("click", function(event){
-		event.preventDefault();    
-		event.stopPropagation();
-		if (count <= 0) {
-			count = 3;
-		} else {
-			-- count;
-		};
-		document
-			.getElementById("bannerImg")
-			.src = "./assets/images/slideshow/" + bannerImgShow;
+let bannerTxt = document.getElementById("bannerTxt"); // identifie le texte en bannière
+bannerTxt.innerHTML = slides[count].tagLine; // indique le texte affichée en bannière
 
-		//		console.log(count)
-});
+let arrow_left = document.getElementById("arrowLeft");
+arrow_left.addEventListener("click", prev);
 
-document
-	.getElementById("arrowRight")
-	.addEventListener("click", function(event){
-		event.preventDefault();    
-		event.stopPropagation();
-		if (count >= slides.length-1) {
-			count = 0;
-		} else {
-			++ count;
-		};
-		bannerImg.src = "./assets/images/slideshow/" + bannerImgShow;
+let right = document.getElementById("arrowRight");
+right.addEventListener("click", next);
 
-		//		console.log(count);
-});
+function prev() {
+	myDots[count].classList.remove("dot_selected");
+	if (count <= 0) {
+		count = 3;
+	} else {
+		-- count;
+	};
+	myDots[count].classList.add("dot_selected");
+		bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
+		bannerTxt.innerHTML = slides[count].tagLine;
+//		console.log(count);
+};
+
+function next() {
+	myDots[count].classList.remove("dot_selected");
+	if (count >= slides.length-1) {
+		count = 0;
+	} else {
+		++ count;
+	};
+	myDots[count].classList.add("dot_selected");
+	bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
+	bannerTxt.innerHTML = slides[count].tagLine;
+//	console.log(count);
+};

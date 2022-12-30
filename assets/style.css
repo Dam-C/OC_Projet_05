@@ -121,6 +121,7 @@ header {
 	object-fit: cover;
 	object-position: center;
 }
+
 /* Code CSS en prévision de l'ajout d'un carousel pour la bannière */
 /* Gestion des fleches du carrousel */
 #banner .arrow {
@@ -128,6 +129,7 @@ header {
 	position: absolute;
 	width: 40px;
 	object-fit:contain;
+	cursor: pointer;
 }
 #banner .arrow_left {
 	left: 30px;

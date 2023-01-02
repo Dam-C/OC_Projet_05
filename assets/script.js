@@ -16,25 +16,18 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-
-const contents = slides.length; // Base de comptage pour le nombre de points
 let count = 0; // pour naviguer dans les index de slides
 
-//pour créer autant de points qu'il y a d'images et de texte
-for (let i = 0; i < contents; i++) {
+for (let i = 0; i < slides.length; i++) { //pour créer autant de points qu'il y a d'images et de texte
 	let leDot = document.createElement("div");
 	leDot.classList.add("dot")
 	let lesDots = document.querySelector("#banner > div.dots");
 	lesDots.appendChild(leDot);
 }
 
-//pour ajouter le point sélectionné
-let myDot = document.querySelector("#banner > div.dots > .dot");
+let myDot = document.querySelector("#banner > div.dots > .dot"); //pour ajouter le point sélectionné
 myDot.classList.add("dot_selected");
 let myDots = document.getElementsByClassName("dot");
-
-//let bannerImgShow = slides[count].image; la variable ne peut s'ajouter à la fonction ??
-//let bannerTxtShow = slides[count].tagLine;
 
 let bannerImg = document.getElementById("bannerImg"); // identifie l'image en bannière
 bannerImg.src = "./assets/images/slideshow/" + slides[count].image; // indique l'image affichée en bannière
@@ -42,34 +35,20 @@ bannerImg.src = "./assets/images/slideshow/" + slides[count].image; // indique l
 let bannerTxt = document.getElementById("bannerTxt"); // identifie le texte en bannière
 bannerTxt.innerHTML = slides[count].tagLine; // indique le texte affichée en bannière
 
-let arrow_left = document.getElementById("arrowLeft");
-arrow_left.addEventListener("click", prev);
+let arrow_left = document.getElementById("arrowLeft"); // pointe la flèche gauche ou précédente
+arrow_left.addEventListener("click", e => {
+	myDots[count].classList.remove("dot_selected"); // supprime la classe créant le point indiquant l'image est affichée
+	count <= 0 ? count = slides.length-1 : --count; // condition modifiant le compteur en --
+	myDots[count].classList.add("dot_selected"); // rajoute la classe créant le point indiquant l'image est affichée
+	bannerImg.src = "./assets/images/slideshow/" + slides[count].image; // modifie le lien src dans le html pour afficher l'image en désirée
+	bannerTxt.innerHTML = slides[count].tagLine; // affiche dans le html le sous-texte associée à l'image
+});
 
-let right = document.getElementById("arrowRight");
-right.addEventListener("click", next);
-
-function prev() {
-	myDots[count].classList.remove("dot_selected");
-	if (count <= 0) {
-		count = 3;
-	} else {
-		-- count;
-	};
-	myDots[count].classList.add("dot_selected");
-		bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
-		bannerTxt.innerHTML = slides[count].tagLine;
-//		console.log(count);
-};
-
-function next() {
-	myDots[count].classList.remove("dot_selected");
-	if (count >= slides.length-1) {
-		count = 0;
-	} else {
-		++ count;
-	};
-	myDots[count].classList.add("dot_selected");
-	bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
-	bannerTxt.innerHTML = slides[count].tagLine;
-//	console.log(count);
-};
+let right = document.getElementById("arrowRight"); // pointe la flèche droite ou suivante
+right.addEventListener("click", e => {
+	myDots[count].classList.remove("dot_selected"); // supprime la classe créant le point indiquant quelle image est affichée
+	count >= slides.length-1 ? count = 0 : ++count; // condition modifiant le compteur en ++
+	myDots[count].classList.add("dot_selected"); // rajoute la classe créant le point indiquant l'image est affichée
+	bannerImg.src = "./assets/images/slideshow/" + slides[count].image; // modifie le lien src dans le html pour afficher l'image en désirée
+	bannerTxt.innerHTML = slides[count].tagLine; // affiche dans le html le sous-texte associée à l'image
+});

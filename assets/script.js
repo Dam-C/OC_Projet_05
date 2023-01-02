@@ -18,7 +18,7 @@ const slides = [
 ]
 let count = 0; // pour naviguer dans les index de slides
 
-for (let i = 0; i < slides.length; i++) { //pour créer autant de points qu'il y a d'images et de texte
+for (let i = 0; i < slides.length; i++) { //pour créer autant de points qu'il y a d'images + texte dans "slides"
 	let leDot = document.createElement("div");
 	leDot.classList.add("dot")
 	let lesDots = document.querySelector("#banner > div.dots");

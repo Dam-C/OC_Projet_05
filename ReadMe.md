@@ -4,7 +4,7 @@ _
 GitHub : https://github.com/Dam-C/OC_Projet_05
 GitHub Page : https://dam-c.github.io/OC_Projet_05/
 
-## 5th Project of the OpenClassrooms coure for web dev "Intégrateur Web"
+## 5th Project of the OpenClassrooms course for web dev "Intégrateur Web"
 The goal is to create a carousel with images and texts using mainly javascript for modifying the HTML via the DOM.
 
 _
